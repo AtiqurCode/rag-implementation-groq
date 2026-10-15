@@ -9,6 +9,8 @@ PDF  ->  pages  ->  chunks  ->  local embeddings  ->  Chroma
 question  ->  query embedding  ->  nearest chunks  ->  Groq  ->  answer + page
 ```
 
+![Question page with the answer and the pages it came from](<public/images/Rag Implementation UI.png>)
+
 ## Contents
 
 - [Architecture](#architecture)
