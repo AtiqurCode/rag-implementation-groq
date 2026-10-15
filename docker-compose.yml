@@ -1,0 +1,20 @@
+services:
+  rag:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      CHROMA_PATH: /app/storage/chroma
+      FASTEMBED_CACHE_PATH: /opt/fastembed
+    volumes:
+      - ./data/pdfs:/app/data/pdfs
+      - ./storage:/app/storage
+      - ./src/rag/static:/usr/local/lib/python3.12/site-packages/rag/static:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
