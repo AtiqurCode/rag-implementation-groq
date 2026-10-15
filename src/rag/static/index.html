@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ask the documents</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,460;6..72,560&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <header class="brand">
+        <h1>Ask the documents</h1>
+        <p class="lede">Answers are written only from the PDFs in the index. A question that is not in those pages is refused.</p>
+      </header>
+
+      <section class="index" aria-labelledby="index-heading">
+        <div class="section-row">
+          <h2 id="index-heading">Index</h2>
+          <p id="index-count" class="quiet">Checking the index…</p>
+        </div>
+        <ul id="file-list" class="file-list"></ul>
+        <p id="index-empty" class="empty" hidden>No PDFs are indexed yet.</p>
+        <div class="actions">
+          <label class="button file-button">
+            Add a PDF
+            <input id="pdf-input" type="file" accept="application/pdf,.pdf">
+          </label>
+          <button id="reindex" class="text-button" type="button">Index the PDF folder</button>
+        </div>
+        <p id="index-status" class="status" role="status"></p>
+      </section>
+    </aside>
+
+    <main class="desk">
+      <form id="ask-form">
+        <label class="question-label" for="question">Question</label>
+        <textarea id="question" name="question" rows="3" required placeholder="What is the refund window for a submerged device?"></textarea>
+        <div class="ask-row">
+          <label class="source-label" for="source">Limit to</label>
+          <select id="source" name="source">
+            <option value="">Every indexed PDF</option>
+          </select>
+          <button id="ask" class="button primary" type="submit">Ask</button>
+        </div>
+        <details class="retrieval">
+          <summary>Retrieval</summary>
+          <div class="retrieval-fields">
+            <label>
+              Passages
+              <input id="k" name="k" type="number" min="1" max="20" placeholder="5">
+            </label>
+            <label>
+              Minimum similarity
+              <input id="min-relevance" name="min_relevance" type="number" min="0" max="1" step="0.05" placeholder="0.30">
+            </label>
+          </div>
+        </details>
+      </form>
+
+      <article id="result" class="result is-empty" aria-live="polite" aria-labelledby="answer-heading">
+        <h2 id="answer-heading">Answer</h2>
+        <p id="result-kicker" class="result-state">Ask a question. The reply from the indexed pages shows here.</p>
+        <div id="answer" class="answer"></div>
+        <section id="sources" hidden>
+          <h2 id="sources-heading">Sources</h2>
+          <ol id="citation-list"></ol>
+        </section>
+      </article>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

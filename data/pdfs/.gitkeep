@@ -1,0 +1,2 @@
+data/pdfs
+Drop PDF files in this folder, then run: python -m rag ingest data/pdfs
